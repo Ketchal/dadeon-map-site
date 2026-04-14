@@ -225,3 +225,253 @@ textarea { min-height: 92px; resize: vertical; }
   .layout { grid-template-columns: 1fr; }
   .sidebar { border-left: none; border-top: 1px solid var(--border); }
 }
+@media (max-width: 900px) {
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  .app-shell {
+    height: 100dvh;
+    min-height: 100dvh;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .topbar h1 {
+    font-size: 20px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .topbar-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .topbar-actions > * {
+    flex: 1 1 140px;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr) auto;
+    height: 100%;
+    min-height: 0;
+  }
+
+  .map-panel {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .map-toolbar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 12px;
+    gap: 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .map-toolbar::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .toolbar-group {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  #toolbar-hint {
+    flex: 0 0 auto;
+    min-width: 220px;
+    font-size: 13px;
+  }
+
+  .map-container {
+    min-height: 0;
+    height: 100%;
+  }
+
+  .sidebar {
+    position: relative;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    padding: 10px;
+    max-height: 42dvh;
+    overflow: auto;
+    background: #191919;
+  }
+
+  .panel {
+    margin-bottom: 10px;
+    border-radius: 14px;
+  }
+
+  .panel h2 {
+    font-size: 15px;
+    padding: 12px 14px;
+  }
+
+  .panel-body {
+    padding: 12px 14px;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .selection-title {
+    font-size: 18px;
+  }
+
+  .badge {
+    font-size: 11px;
+  }
+
+  .selection-actions {
+    flex-direction: column;
+  }
+
+  .selection-actions > button {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+}
+@media (max-width: 640px) {
+  .topbar {
+    padding: 10px 12px;
+  }
+
+  .topbar-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .mode-switch {
+    width: 100%;
+  }
+
+  .toolbar-group {
+    gap: 6px;
+  }
+
+  .map-toolbar button {
+    padding: 10px 10px;
+  }
+
+  .sidebar {
+    max-height: 48dvh;
+    padding: 8px;
+  }
+
+  .panel-body {
+    padding: 10px 12px;
+  }
+}
+@media (max-width: 900px) {
+  .layout {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .map-panel {
+    position: relative;
+    z-index: 1;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    border-radius: 18px 18px 0 0;
+    background: rgba(25, 25, 25, 0.97);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.28);
+    padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
+    max-height: 34dvh;
+    overflow: auto;
+    transition: max-height 0.22s ease;
+  }
+
+  .sidebar::before {
+    content: "";
+    display: block;
+    width: 42px;
+    height: 5px;
+    margin: 2px auto 10px;
+    border-radius: 999px;
+    background: rgba(244, 240, 232, 0.22);
+  }
+
+  .sidebar:has(#selection-panel:not(:empty)) {
+    max-height: 52dvh;
+  }
+
+  .panel {
+    margin-bottom: 10px;
+  }
+
+  .panel h2 {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--panel);
+  }
+
+  .map-container {
+    padding-bottom: 32dvh;
+  }
+}
+@media (max-width: 640px) {
+  .sidebar {
+    max-height: 30dvh;
+    border-radius: 16px 16px 0 0;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+  }
+
+  .sidebar:has(#selection-panel:not(:empty)) {
+    max-height: 58dvh;
+  }
+
+  .map-container {
+    padding-bottom: 28dvh;
+  }
+}
+#selection-panel.is-empty {
+  opacity: 0.92;
+}
+
+@media (max-width: 900px) {
+  .sidebar:has(#selection-panel.is-empty) {
+    max-height: 18dvh;
+  }
+
+  .sidebar:has(#selection-panel.is-empty) .panel:not(:first-child) {
+    display: none;
+  }
+}

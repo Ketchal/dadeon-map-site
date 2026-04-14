@@ -779,6 +779,7 @@ function renderMeasurement() {
 
 function renderSelectionPanel() {
   if (!refs.selectionPanel) return;
+  refs.selectionPanel.classList.remove("is-empty");
 
   if (state.selectedMarkerId) {
     const marker = getMarkerById(state.selectedMarkerId);
@@ -976,11 +977,12 @@ function renderSelectionPanel() {
   }
 
   if (!state.selectedRegionId) {
+    refs.selectionPanel.classList.add("is-empty");
     refs.selectionPanel.innerHTML = `
-      <p>Ничего не выбрано.</p>
-      <p class="small">Кликни по региону, поселению или метке.</p>
-    `;
-    return;
+  <p>Ничего не выбрано.</p>
+  <p class="small">Кликни по региону, поселению или метке.</p>
+`;
+return;
   }
 
   const region = state.regions.find((item) => item.id === state.selectedRegionId);
