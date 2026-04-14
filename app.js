@@ -793,12 +793,12 @@ function renderSelectionPanel() {
 
     if (isPlayerMode()) {
   refs.selectionPanel.innerHTML = `
-    <h3 class="selection-title">${escapeHtml(settlement.name)}</h3>
+    <h3 class="selection-title">${escapeHtml(marker.name)}</h3>
     <div class="badges">
-      <span class="badge">Поселение</span>
-      <span class="badge">${escapeHtml(settlement.type)}</span>
+      <span class="badge">Метка</span>
+      <span class="badge">${escapeHtml(typeConfig.label)}</span>
     </div>
-    <p><strong>Описание:</strong> ${escapeHtml(settlement.description ?? province?.description ?? "—")}</p>
+    <p><strong>Описание:</strong> ${escapeHtml(marker.description ?? "—")}</p>
   `;
   return;
 }
@@ -1445,7 +1445,7 @@ function resetZoom() {
 }
 
 function beginPan(event) {
-  if (state.interaction.settlementPointerDown) return;
+  if (state.interaction.activePointerDown) return;
   if (!(event.target instanceof SVGElement)) return;
 
   const clickedSettlement = event.target.closest?.('[data-entity-type="settlement"]');
